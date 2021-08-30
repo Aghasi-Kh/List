@@ -14,6 +14,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -45,6 +46,9 @@ public class User implements Serializable {
     @ContainLowercase
     @ContainUppercase
     private String mPassword;
+
+//    @OneToMany(mappedBy = "product")
+//    private List<Product> products;
 
     public User(String userName, String lastName, String email, Long phoneNumber, String password) {
         this.mUserName = userName;

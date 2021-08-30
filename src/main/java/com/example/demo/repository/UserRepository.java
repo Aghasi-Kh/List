@@ -8,7 +8,13 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
     public interface UserRepository extends JpaRepository<User,Long>{
-        @Query("select u from users u where u.id = ?1")
+        @Query("select u from User u where u.id = ?1")
         User getById(Long id);
+
+        @Query("Delete from User where id = ?1")
+        User deleteUserById(Long id);
+
+        @Query("Select u from User u")
+        List<User> users();
     }
 

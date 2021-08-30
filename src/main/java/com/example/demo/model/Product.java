@@ -34,5 +34,9 @@ public class Product {
     @Column(name = "category_id")
     public Long mCategoryId;
 
+//    @ManyToOne
+//    @JoinColumn(name = "user_id")
+//    User user;
 
+    Product(){}
 }

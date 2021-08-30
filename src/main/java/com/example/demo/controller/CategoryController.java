@@ -19,12 +19,17 @@ public class CategoryController {
     }
 
     @GetMapping("/category/{id}")
-    public Category printCategory(@PathVariable Long id){
+    public Category getCategory(@PathVariable Long id){
         return categoryService.getById(id);
     }
     @GetMapping("/category")
     public List<Category> getAllCategories(){
         return categoryService.getAll();
+    }
+    @PostMapping("/category")
+    public ResponseEntity save( @RequestBody Category category){
+        categoryService.save(category);
+        return ResponseEntity.ok(category);
     }
 
 

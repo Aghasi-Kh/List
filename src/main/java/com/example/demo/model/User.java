@@ -1,14 +1,13 @@
 package com.example.demo.model;
 
-//import com.github.ankurpathak.password.bean.constraints.ContainDigit;
-//import com.github.ankurpathak.password.bean.constraints.ContainLowercase;
-//import com.github.ankurpathak.password.bean.constraints.ContainUppercase;
-//import com.github.ankurpathak.password.bean.constraints.NotContainWhitespace;
 
 import com.github.ankurpathak.password.bean.constraints.ContainDigit;
 import com.github.ankurpathak.password.bean.constraints.ContainLowercase;
 import com.github.ankurpathak.password.bean.constraints.ContainUppercase;
 import com.github.ankurpathak.password.bean.constraints.NotContainWhitespace;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -16,8 +15,11 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.List;
 
+@Data
 @Entity
 @Table(name = "users")
+@NoArgsConstructor
+@AllArgsConstructor
 public class User implements Serializable {
 
     @Id
@@ -50,61 +52,4 @@ public class User implements Serializable {
 //    @OneToMany(mappedBy = "product")
 //    private List<Product> products;
 
-    public User(){}
-
-    public User(String userName, String lastName, String email, Long phoneNumber, String password) {
-        this.mUserName = userName;
-        this.mLastName = lastName;
-        this.mEmail = email;
-        this.mPhoneNumber = phoneNumber;
-        this.mPassword = password;
-    }
-
-    public Long getmUserID() {
-        return mUserID;
-    }
-
-    public void setmUserID(Long mUserID) {
-        this.mUserID = mUserID;
-    }
-
-    public String getmUserName() {
-        return mUserName;
-    }
-
-    public void setmUserName(String mUserName) {
-        this.mUserName = mUserName;
-    }
-
-    public String getmLastName() {
-        return mLastName;
-    }
-
-    public void setmLastName(String mLastName) {
-        this.mLastName = mLastName;
-    }
-
-    public String getmEmail() {
-        return mEmail;
-    }
-
-    public void setmEmail(String mEmail) {
-        this.mEmail = mEmail;
-    }
-
-    public Long getmPhoneNumber() {
-        return mPhoneNumber;
-    }
-
-    public void setmPhoneNumber(Long mPhoneNumber) {
-        this.mPhoneNumber = mPhoneNumber;
-    }
-
-    public String getmPassword() {
-        return mPassword;
-    }
-
-    public void setmPassword(String mPassword) {
-        this.mPassword = mPassword;
-    }
 }

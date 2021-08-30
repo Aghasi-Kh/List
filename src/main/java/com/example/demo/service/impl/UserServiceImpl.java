@@ -34,12 +34,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User update(User newUser) throws UserNotFoundException {
-        Optional<User> user = userRepository.findById(newUser.getmUserID());
+        Optional<User> user = userRepository.findById(newUser.getMUserID());
 
         if (user.isPresent()) {
             return userRepository.save(newUser);
         } else {
-            throw new UserNotFoundException(newUser.getmUserID());
+            throw new UserNotFoundException(newUser.getMUserID());
         }
     }
 

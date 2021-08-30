@@ -15,8 +15,15 @@ import java.util.List;
 @Service
 public class CategoryServiceImpl implements CategoryService {
 
+
     @Autowired
     CategoryRepository categoryRepository;
+
+
+    @Override
+    public void save(Category category) {
+        categoryRepository.save(category);
+    }
 
     @Override
     public Category getById(Long id) {
@@ -26,21 +33,12 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<Category> getAll() {
-        List<Category> result = categoryRepository.findAll();
-        return result;
+        return categoryRepository.findAll();
+
     }
 
-
     @Override
-    @Transactional
-    @Async("taskExecutorSecond")
-    public void update(Category category){
-
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    public void update(Category category) {
 
     }
 

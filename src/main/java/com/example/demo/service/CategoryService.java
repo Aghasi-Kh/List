@@ -8,11 +8,11 @@ import java.util.List;
 
 public interface CategoryService {
 
+    void save(Category category);
+
     Category getById(Long id);
 
     List<Category> getAll();
 
-    @Transactional
-    @Async("taskExecutorSecond")
     void update(Category category);
 }

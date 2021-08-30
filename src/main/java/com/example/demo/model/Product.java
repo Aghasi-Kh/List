@@ -24,7 +24,7 @@ public class Product {
 
     private String mDescription;
 
-    private Long mPrise;
+    private Long mPrice;
 
     private String mPayLoad;
 
@@ -34,9 +34,9 @@ public class Product {
     @Column(name = "category_id")
     public Long mCategoryId;
 
-//    @ManyToOne
-//    @JoinColumn(name = "user_id")
-//    User user;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_CURRENCY")
+    User user;
 
     Product(){}
 }

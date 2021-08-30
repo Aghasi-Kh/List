@@ -7,7 +7,7 @@ import com.example.demo.util.exception.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.nio.file.attribute.UserPrincipalNotFoundException;
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User save(User user) {
+    public User save(@Valid User user) {
         return userRepository.save(user);
     }
 
@@ -44,8 +44,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User deleteUserById(Long id) {
-        return userRepository.deleteUserById(id);
+    public void deleteUserById(Long id) {
+         userRepository.deleteUserById(id);
     }
 
 

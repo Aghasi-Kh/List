@@ -27,7 +27,7 @@ public class UserController {
 
     @Transactional
     @PostMapping("/users")
-    public User user(@Valid @RequestBody User user) {
+    public User add(@Valid @RequestBody User user) {
         return userServiceimpl.save(user);
     }
 

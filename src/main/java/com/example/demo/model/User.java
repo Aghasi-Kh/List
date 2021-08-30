@@ -49,7 +49,8 @@ public class User implements Serializable {
     @ContainUppercase
     private String mPassword;
 
-//    @OneToMany(mappedBy = "product")
-//    private List<Product> products;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Product> products;
 
 }

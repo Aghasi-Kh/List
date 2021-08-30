@@ -1,10 +1,15 @@
 package com.example.demo.service;
 
 import com.example.demo.model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import javax.validation.Valid;
 import java.util.List;
+@Repository
+public interface UserService extends JpaRepository<User,Long> {
 
-public interface UserService {
-
+    @Query("select u from users u where u.id = ?1")
+    User getById(Long id);
 }

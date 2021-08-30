@@ -1,9 +1,12 @@
 package com.example.demo.model;
 
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.Date;
 
+@Data
 @Entity
 public class Product {
 
@@ -17,19 +20,19 @@ public class Product {
     @Column(name = "active_date")
     private Date mActiveDate;
 
-    private String name;
+    private String mName;
 
-    private String description;
+    private String mDescription;
 
-    private Long prise;
+    private Long mPrise;
 
-    private String payLoad;
+    private String mPayLoad;
 
     @Column(name = "user_id")
-    public Long userId;
+    public Long mUserId;
 
     @Column(name = "category_id")
-    public Long categoryId;
+    public Long mCategoryId;
 
 
 }

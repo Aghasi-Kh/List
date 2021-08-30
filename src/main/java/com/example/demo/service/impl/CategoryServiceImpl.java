@@ -39,7 +39,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public void update(Category category) {
-
+        categoryRepository.save(category);
     }
 
 

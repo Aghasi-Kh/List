@@ -15,5 +15,6 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
     @Query("SELECT u FROM Category u WHERE u.id = ?1")
     Category getById(@Param("id") Long id);
 
+    //@Query("INSERT into Category")
 
 }

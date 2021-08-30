@@ -7,9 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.validation.Valid;
 import java.util.List;
-@Repository
-public interface UserService extends JpaRepository<User,Long> {
 
-    @Query("select u from users u where u.id = ?1")
-    User getById(Long id);
+public interface UserService  {
+
 }

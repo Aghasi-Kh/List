@@ -15,13 +15,17 @@ public class CategoryServiceImpl implements CategoryService {
     @Autowired
     CategoryRepository categoryRepository;
 
-
-    public Category getById(Long id){
+    @Override
+    public Category getById(Long id) {
         return categoryRepository.getById(id);
     }
+
+
     @Override
     public List<Category> getAll() {
         List<Category> result = categoryRepository.findAll();
         return result;
     }
+
+
 }

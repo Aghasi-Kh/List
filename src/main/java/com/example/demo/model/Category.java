@@ -1,10 +1,14 @@
 package com.example.demo.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class Category {
 
@@ -20,5 +24,6 @@ public class Category {
 
     @Column(name = "parent_id")
     private long mParent_Id;
+
 
 }

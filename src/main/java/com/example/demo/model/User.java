@@ -11,8 +11,6 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.Objects;
-
 @Data
 @Entity
 @Table(name = "users")
@@ -24,18 +22,18 @@ public class User implements Serializable {
 
     @Column(name = "username", nullable = false)
     @Size(min = 2, max = 15)
-    private String userName;
+    private String mUserName;
 
     @Column(name = "lastname", nullable = false)
     @Size(min = 2, max = 25)
-    private String lastName;
+    private String mLastName;
 
     @Column(name = "email", nullable = false, unique = true)
     @Email
-    private String email;
+    private String mEmail;
 
     @Column(name = "phone_number", nullable = false, unique = true)
-    private Long phoneNumber;
+    private Long mPhoneNumber;
 
     @Column(name = "password", nullable = false, unique = true)
     @Size(min = 8)
@@ -43,14 +41,14 @@ public class User implements Serializable {
 //    @ContainDigit
 //    @ContainLowercase
 //    @ContainUppercase
-    private String password;
+    private String mPassword;
 
     public User(String userName, String lastName, String email, Long phoneNumber, String password) {
-        this.userName = userName;
-        this.lastName = lastName;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.password = password;
+        this.mUserName = userName;
+        this.mLastName = lastName;
+        this.mEmail = email;
+        this.mPhoneNumber = phoneNumber;
+        this.mPassword = password;
     }
 
 

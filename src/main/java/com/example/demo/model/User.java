@@ -50,6 +50,8 @@ public class User implements Serializable {
 //    @OneToMany(mappedBy = "product")
 //    private List<Product> products;
 
+    public User(){}
+
     public User(String userName, String lastName, String email, Long phoneNumber, String password) {
         this.mUserName = userName;
         this.mLastName = lastName;

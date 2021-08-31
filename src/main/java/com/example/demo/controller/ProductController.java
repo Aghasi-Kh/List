@@ -12,6 +12,8 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
+import static com.example.demo.util.constants.Message.NOT_FOUND_MESSAGE;
+
 @RestController
 @RequestMapping("/")
 public class ProductController {
@@ -42,7 +44,7 @@ public class ProductController {
     public Product addProduct(@Valid @RequestBody Product product) throws DuplicateDataException {
         Optional<Product> product1 = productServiceImpl.findById(product.getMId());
         if (product1.isPresent()) {
-            throw new DuplicateDataException("Product is duplicated:");
+            throw new DuplicateDataException(NOT_FOUND_MESSAGE);
         }
         return productServiceImpl.save(product);
     }

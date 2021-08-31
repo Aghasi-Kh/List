@@ -2,7 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.model.User;
 import com.example.demo.service.impl.UserServiceImpl;
-import com.example.demo.util.exception.UserNotFoundException;
+import com.example.demo.util.exception.DataNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +16,7 @@ public class UserController {
     UserServiceImpl userServiceimpl;
 
     @GetMapping("/user/{id}")
-    public User getById(@PathVariable Long id) throws UserNotFoundException {
+    public User getById(@PathVariable Long id) throws DataNotFoundException {
         return userServiceimpl.getUserById(id);
     }
 
@@ -39,7 +39,7 @@ public class UserController {
 
     @Transactional
     @PatchMapping("/users")
-    public User update(@RequestBody User user) throws UserNotFoundException {
+    public User update(@RequestBody User user) throws DataNotFoundException {
         return userServiceimpl.update(user);
     }
 
@@ -49,7 +49,7 @@ public class UserController {
 
         try {
             return userServiceimpl.update(user);
-        } catch (UserNotFoundException e) {
+        } catch (DataNotFoundException e) {
             return userServiceimpl.save(user);
         }
     }

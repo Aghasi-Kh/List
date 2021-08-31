@@ -3,7 +3,7 @@ package com.example.demo.service.impl;
 import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserService;
-import com.example.demo.util.exception.UserNotFoundException;
+import com.example.demo.util.exception.DataNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +18,8 @@ public class UserServiceImpl implements UserService {
     UserRepository userRepository;
 
     @Override
-    public User getUserById(Long id) throws UserNotFoundException {
-        return userRepository.findById(id).orElseThrow(()-> new UserNotFoundException(id));
+    public User getUserById(Long id) throws DataNotFoundException {
+        return userRepository.findById(id).orElseThrow(()-> new DataNotFoundException(id));
     }
 
     @Override
@@ -33,13 +33,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User update(User newUser) throws UserNotFoundException {
+    public User update(User newUser) throws DataNotFoundException {
         Optional<User> user = userRepository.findById(newUser.getMUserID());
 
         if (user.isPresent()) {
             return userRepository.save(newUser);
         } else {
-            throw new UserNotFoundException(newUser.getMUserID());
+            throw new DataNotFoundException(newUser.getMUserID());
         }
     }
 

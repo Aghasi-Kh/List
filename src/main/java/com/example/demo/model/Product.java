@@ -18,20 +18,15 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long mId;
+
     @Column(name = "created_date", nullable = false)
     private Date mCreatedDate;
+
     @Column(name = "active_date", nullable = false)
     private Date mActiveDate;
 
-    @Column(name = "user_id")
-    public Long mUserId;
-
     @Column(name = "category_id")
     public Long mCategoryId;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    User user;
 
     @Column(name = "product_name")
     private String mName;
@@ -44,5 +39,9 @@ public class Product {
 
     @Column(name = "payload")
     private String mPayLoad;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    User user;
 
 }

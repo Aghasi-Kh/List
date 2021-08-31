@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseBody
 @ResponseStatus(HttpStatus.NOT_FOUND)
-public class UserNotFoundException extends Exception {
-    public UserNotFoundException(@NonNull Long id) {
+public class DataNotFoundException extends Exception {
+    public DataNotFoundException(@NonNull String id) {
         super("There is no user with id: " + id);
     }
 }

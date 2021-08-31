@@ -11,12 +11,12 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query("select p from Product p where p.mPrice >= :lowerPrice and p.mPrice <= :upperPrice")
     List<Product> productsWithThisRange(int lowerPrice, int upperPrice);
 
-    @Query("SELECT u FROM Product u WHERE u.id = ?1")
+    @Query("SELECT p FROM Product p WHERE p.id = ?1")
     Product getById(@Param("id") Long id);
 
-    @Query("select u from  Product u ")
+    @Query("select p from  Product p ")
     List<Product> findAll();
 
     @Query("Delete from Product where id = ?1")
-    void deleteCategoryById(Long id);
+    void deleteProductById(Long id);
 }

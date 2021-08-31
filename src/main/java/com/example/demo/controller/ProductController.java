@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Product;
 import com.example.demo.service.impl.ProductServiceImpl;
+import com.example.demo.util.exception.DataNotFoundException;
 import com.example.demo.util.exception.DuplicateDataException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,13 +23,34 @@ public class ProductController {
         return productServiceImpl.productsWithThisRange(lowerPrice, upperPrice);
     }
 
+    @GetMapping("products")
+    List<Product> allProducts() {
+        return productServiceImpl.findAll();
+    }
+
+    @GetMapping("products/{id}")
+    public Optional<Product> getProductById(@PathVariable Long id) throws DataNotFoundException {
+        Optional<Product> product = productServiceImpl.findById(id);
+        if (product.isEmpty()) {
+            throw new DataNotFoundException("Product is not found:");
+        }
+        return product;
+    }
+
     @Transactional
     @PostMapping("products")
     public Product addProduct(@Valid @RequestBody Product product) throws DuplicateDataException {
         Optional<Product> product1 = productServiceImpl.findById(product.getMId());
         if (product1.isPresent()) {
-            throw new DuplicateDataException("Product is duplicated");
+            throw new DuplicateDataException("Product is duplicated:");
         }
         return productServiceImpl.save(product);
     }
+
+    @Transactional
+    @DeleteMapping("users/{id}")
+    public void deleteProduct(@PathVariable Long id) {
+        productServiceImpl.deleteProductById(id);
+    }
+
 }

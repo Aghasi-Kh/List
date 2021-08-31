@@ -17,8 +17,12 @@ import static com.example.demo.util.constants.Message.DUPLICATE_USER_MESSAGE;
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
     public User getUserById(Long id) throws DataNotFoundException {
@@ -39,14 +43,11 @@ public class UserServiceImpl implements UserService {
         User duplicate = userRepository.getByEmail(user.getMEmail());
         DuplicateDataException.check(duplicate != null, DUPLICATE_USER_MESSAGE);
         return userRepository.save(user);
-
-
     }
 
     @Override
     public User update(User newUser) throws DataNotFoundException {
         Optional<User> user = userRepository.findById(newUser.getMUserID());
-
         if (user.isPresent()) {
             return userRepository.save(newUser);
         } else {

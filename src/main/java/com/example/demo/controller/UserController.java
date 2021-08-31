@@ -57,7 +57,7 @@ public class UserController {
         }
     }
 
-    @PutMapping("register")
+    @PostMapping("register")
     public ResponseEntity registerUser(@Valid @RequestBody User user) {
         user.setMPassword(Md5Encoder.encode(user.getMPassword()));
         userServiceimpl.save(user);

@@ -1,10 +1,5 @@
 package com.example.demo.model;
 
-
-import com.github.ankurpathak.password.bean.constraints.ContainDigit;
-import com.github.ankurpathak.password.bean.constraints.ContainLowercase;
-import com.github.ankurpathak.password.bean.constraints.ContainUppercase;
-import com.github.ankurpathak.password.bean.constraints.NotContainWhitespace;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -42,13 +37,7 @@ public class User implements Serializable {
     private Long mPhoneNumber;
 
     @Column(name = "password", nullable = false, unique = true)
-    @Size(min = 8)
-    @NotContainWhitespace
-    @ContainDigit
-    @ContainLowercase
-    @ContainUppercase
     private String mPassword;
-
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Product> products;

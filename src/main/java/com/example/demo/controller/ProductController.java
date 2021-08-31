@@ -20,7 +20,7 @@ public class ProductController {
     @Autowired
     ProductServiceImpl productServiceImpl;
 
-    @GetMapping("products")
+    @GetMapping("productsRange")
     List<Product> products(@RequestParam(name = "lowerPrice") int lowerPrice, @RequestParam(name = "upperPrice") int upperPrice) {
         return productServiceImpl.productsWithThisRange(lowerPrice, upperPrice);
     }
@@ -34,7 +34,7 @@ public class ProductController {
     public Optional<Product> getProductById(@PathVariable Long id) throws DataNotFoundException {
         Optional<Product> product = productServiceImpl.findById(id);
         if (product.isEmpty()) {
-            throw new DataNotFoundException("Product is not found:");
+            throw new DataNotFoundException("There is no product with id-" + id);
         }
         return product;
     }

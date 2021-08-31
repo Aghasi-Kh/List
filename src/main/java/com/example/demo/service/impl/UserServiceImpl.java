@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserById(Long id) throws DataNotFoundException {
-        return userRepository.findById(id).orElseThrow(()-> new DataNotFoundException(id));
+        return userRepository.findById(id).orElseThrow(()-> new DataNotFoundException("User not found with id-" +id));
     }
 
     @Override
@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
         if (user.isPresent()) {
             return userRepository.save(newUser);
         } else {
-            throw new DataNotFoundException(newUser.getMUserID());
+            throw new DataNotFoundException("User not found with id-" + newUser.getMUserID());
         }
     }
 

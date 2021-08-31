@@ -53,4 +53,5 @@ public class User implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Product> products;
 
+
 }

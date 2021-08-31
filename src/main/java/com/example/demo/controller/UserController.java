@@ -4,6 +4,7 @@ import com.example.demo.model.User;
 import com.example.demo.service.impl.UserServiceImpl;
 import com.example.demo.util.encoder.Md5Encoder;
 import com.example.demo.util.exception.DataNotFoundException;
+import com.example.demo.util.exception.DuplicateDataException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,7 +37,7 @@ public class UserController {
 
     @Transactional
     @GetMapping("deleteUser/{id}")
-    public void deleteUserById(@PathVariable Long id){
+    public void deleteUserById(@PathVariable Long id) {
         userServiceimpl.deleteUserById(id);
     }
 
@@ -58,9 +59,9 @@ public class UserController {
     }
 
     @PostMapping("register")
-    public ResponseEntity registerUser(@Valid @RequestBody User user) {
+    public ResponseEntity registerUser(@Valid @RequestBody User user) throws DuplicateDataException {
         user.setMPassword(Md5Encoder.encode(user.getMPassword()));
-        userServiceimpl.save(user);
+        userServiceimpl.register(user);
         return ResponseEntity.ok(user);
     }
 }

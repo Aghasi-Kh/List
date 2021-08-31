@@ -2,13 +2,10 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Category;
 import com.example.demo.service.impl.CategoryServiceImpl;
-import com.example.demo.util.exception.UserNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class CategoryController {
@@ -36,9 +33,9 @@ public class CategoryController {
     }
 
     @PutMapping("/category")
-    public ResponseEntity update(@RequestBody  Category category){
+    public ResponseEntity update(@RequestBody Category category) {
 
-             categoryService.update(category);
+        categoryService.update(category);
 
         return ResponseEntity.ok(category);
     }

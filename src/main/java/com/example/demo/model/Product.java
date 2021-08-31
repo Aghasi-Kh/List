@@ -14,13 +14,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class Product {
 
-    @Column(name = "user_id")
-    public Long mUserId;
-    @Column(name = "category_id")
-    public Long mCategoryId;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ID_CURRENCY")
-    User user;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long mId;
@@ -28,9 +22,27 @@ public class Product {
     private Date mCreatedDate;
     @Column(name = "active_date", nullable = false)
     private Date mActiveDate;
+
+    @Column(name = "user_id")
+    public Long mUserId;
+
+    @Column(name = "category_id")
+    public Long mCategoryId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    User user;
+
+    @Column(name = "product_name")
     private String mName;
+
+    @Column(name = "product_description")
     private String mDescription;
+
+    @Column(name = "product_price")
     private Long mPrice;
+
+    @Column(name = "payload")
     private String mPayLoad;
 
 }

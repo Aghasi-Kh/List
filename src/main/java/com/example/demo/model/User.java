@@ -25,6 +25,10 @@ public class User implements Serializable {
     @Size(min = 2, max = 15)
     private String mUserName;
 
+    @Column(name = "firstname", nullable = false)
+    @Size(min = 2, max = 25)
+    private String mFirstName;
+
     @Column(name = "lastname", nullable = false)
     @Size(min = 2, max = 25)
     private String mLastName;

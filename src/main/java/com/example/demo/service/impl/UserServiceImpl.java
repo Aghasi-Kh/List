@@ -39,10 +39,10 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(user);
     }
 
-    public User register(@Valid User user) throws DuplicateDataException {
+    public void register(@Valid User user) throws DuplicateDataException {
         User duplicate = userRepository.getByEmail(user.getMEmail());
         DuplicateDataException.check(duplicate != null, DUPLICATE_USER_MESSAGE);
-        return userRepository.save(user);
+        userRepository.save(user);
     }
 
     @Override
@@ -59,6 +59,4 @@ public class UserServiceImpl implements UserService {
     public void deleteUserById(Long id) {
         userRepository.deleteUserById(id);
     }
-
-
 }

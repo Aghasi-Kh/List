@@ -17,4 +17,6 @@ public interface UserService {
     User save(User user) throws DuplicateDataException;
 
     User update(User user) throws DataNotFoundException;
+
+   // User login(String email, String password) throws DataNotFoundException, DuplicateDataException;
 }

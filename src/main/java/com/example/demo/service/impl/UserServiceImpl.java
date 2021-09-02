@@ -3,6 +3,7 @@ package com.example.demo.service.impl;
 import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserService;
+import com.example.demo.util.encoder.Md5Encoder;
 import com.example.demo.util.exception.DataNotFoundException;
 import com.example.demo.util.exception.DuplicateDataException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.example.demo.util.constants.Message.DUPLICATE_USER_MESSAGE;
+import static com.example.demo.util.constants.Message.INVALID_CREDENTIALS_MESSAGE;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -39,10 +41,10 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(user);
     }
 
-    public void register(@Valid User user) throws DuplicateDataException {
+    public User register(@Valid User user) throws DuplicateDataException {
         User duplicate = userRepository.getByEmail(user.getMEmail());
         DuplicateDataException.check(duplicate != null, DUPLICATE_USER_MESSAGE);
-        userRepository.save(user);
+        return userRepository.save(user);
     }
 
     @Override
@@ -59,4 +61,6 @@ public class UserServiceImpl implements UserService {
     public void deleteUserById(Long id) {
         userRepository.deleteUserById(id);
     }
+
+
 }

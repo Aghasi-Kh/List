@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
-    @Query("select p from Product p where p.mPrice >= :lowerPrice and p.mPrice <= :upperPrice")
+    @Query(value = "select * from product  where m_price >= :lowerPrice and m_price <= :upperPrice",nativeQuery = true)
     List<Product> productsWithThisRange(int lowerPrice, int upperPrice);
 
     @Query("SELECT p FROM Product p WHERE p.id = ?1")

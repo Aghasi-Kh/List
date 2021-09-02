@@ -11,4 +11,8 @@ public class DataNotFoundException extends Exception {
     public DataNotFoundException(String message) {
         super(message);
     }
+    public static void check(boolean expression,String message) throws DuplicateDataException {
+        if (expression)
+            throw new DuplicateDataException(message);
+    }
 }

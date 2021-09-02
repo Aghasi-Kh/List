@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -41,6 +42,7 @@ public class User implements Serializable {
     private Long mPhoneNumber;
 
     @Column(name = "password", nullable = false, unique = true)
+    @Size(min = 8)
     private String mPassword;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)

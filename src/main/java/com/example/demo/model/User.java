@@ -41,7 +41,7 @@ public class User implements Serializable {
     @Size(min = 8)
     private String mPassword;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Product> products;
 
 

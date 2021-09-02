@@ -3,7 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.model.JwtRequest;
 import com.example.demo.model.JwtResponse;
 import com.example.demo.model.User;
-import com.example.demo.service.MyUserDetailsServiceImpl;
+import com.example.demo.service.impl.MyUserDetailsServiceImpl;
 import com.example.demo.service.impl.UserServiceImpl;
 import com.example.demo.util.JwtUtil;
 import com.example.demo.util.encoder.Md5Encoder;
@@ -23,9 +23,10 @@ import java.util.List;
 
 //worked with it
 
+@CrossOrigin("http://localhost:4200")
 @RequestMapping("/")
 @RestController
-public class UserController{
+public class UserController {
     @Autowired
     UserServiceImpl userServiceimpl;
 
@@ -44,8 +45,9 @@ public class UserController{
     }
 
     @GetMapping("users")
-    public List<User> users() {
-        return userServiceimpl.users();
+    public ResponseEntity<List<User>> users() {
+        List<User> users = userServiceimpl.users();
+        return ResponseEntity.ok().body(users);
     }
 
     @Transactional
@@ -84,13 +86,13 @@ public class UserController{
         return ResponseEntity.ok(user);
     }
 
-    @PostMapping("/authenticate")
+    @PostMapping("/login")
     public JwtResponse authenticate(@RequestBody JwtRequest jwtRequest) throws Exception {
 
-        try{
+        try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
-                            jwtRequest.getUserName(),
+                            jwtRequest.getEmail(),
                             jwtRequest.getPassword()
                     )
             );
@@ -99,7 +101,7 @@ public class UserController{
         }
 
         final UserDetails userDetails
-                = myUserDetailsServiceImpl.loadUserByUsername(jwtRequest.getUserName());
+                = myUserDetailsServiceImpl.loadUserByUsername(jwtRequest.getEmail());
 
         final String token =
                 jwtUtil.generateToken(userDetails);

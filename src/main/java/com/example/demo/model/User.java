@@ -22,15 +22,11 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long mUserID;
 
-    @Column(name = "username", nullable = false)
-    @Size(min = 2, max = 15)
-    private String mUserName;
-
-    @Column(name = "firstname", nullable = false)
+    @Column(name = "first_name", nullable = false)
     @Size(min = 2, max = 25)
     private String mFirstName;
 
-    @Column(name = "lastname", nullable = false)
+    @Column(name = "last_name", nullable = false)
     @Size(min = 2, max = 25)
     private String mLastName;
 
@@ -41,7 +37,7 @@ public class User implements Serializable {
     @Column(name = "phone_number", nullable = false, unique = true)
     private Long mPhoneNumber;
 
-    @Column(name = "password", nullable = false, unique = true)
+    @Column(name = "password", nullable = false)
     @Size(min = 8)
     private String mPassword;
 

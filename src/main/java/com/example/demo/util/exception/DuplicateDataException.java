@@ -10,8 +10,8 @@ public class DuplicateDataException extends Exception {
         super(message);
     }
 
-    public static void check(boolean expression, String message) throws DuplicateDataException {
+    public static void check(boolean expression, String message) throws DataNotFoundException {
         if (expression)
-            throw new DuplicateDataException(message);
+            throw new DataNotFoundException(message);
     }
 }

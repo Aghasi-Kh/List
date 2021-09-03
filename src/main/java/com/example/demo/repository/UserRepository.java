@@ -22,6 +22,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query("select u from User u where u.mEmail = :email")
     User getByEmail(String email);
 
+    User getByUsername(String username);
+
 //        @Query("insert into User (mName,mLastName,mEmail,mPhoneNumber,mPassword) values(:name, :lastname,:email, :phoneNumber,:password)")
 //        User save(User user);
 //    @Query("update User u set u.mName = user.mName,u.mLastName = user.mLastName,u.mEmail = user.mEmail,u.mPhoneNumber = user.mPhoneNumber,u.mPassword = user.mPassword where u.mId = user.mId")

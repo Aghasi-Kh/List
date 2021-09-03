@@ -3,7 +3,6 @@ package com.example.demo.controller;
 import com.example.demo.model.Product;
 import com.example.demo.service.impl.ProductServiceImpl;
 import com.example.demo.util.exception.DataNotFoundException;
-import com.example.demo.util.exception.DuplicateDataException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -41,10 +40,10 @@ public class ProductController {
 
     @Transactional
     @PostMapping("products")
-    public Product addProduct(@Valid @RequestBody Product product) throws DuplicateDataException {
+    public Product addProduct(@Valid @RequestBody Product product) throws DataNotFoundException {
         Optional<Product> product1 = productServiceImpl.findById(product.getMId());
         if (product1.isPresent()) {
-            throw new DuplicateDataException(NOT_FOUND_MESSAGE);
+            throw new DataNotFoundException(NOT_FOUND_MESSAGE);
         }
         return productServiceImpl.save(product);
     }

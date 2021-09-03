@@ -2,7 +2,6 @@ package com.example.demo.service;
 
 import com.example.demo.model.User;
 import com.example.demo.util.exception.DataNotFoundException;
-import com.example.demo.util.exception.DuplicateDataException;
 
 import java.util.List;
 
@@ -14,9 +13,9 @@ public interface UserService {
 
     List<User> users();
 
-    User save(User user) throws DuplicateDataException;
+    User save(User user) throws DataNotFoundException;
 
     User update(User user) throws DataNotFoundException;
 
-   // User login(String email, String password) throws DataNotFoundException, DuplicateDataException;
+    // User login(String email, String password) throws DataNotFoundException, DuplicateDataException;
 }

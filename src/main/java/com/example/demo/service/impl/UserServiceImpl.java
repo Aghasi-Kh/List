@@ -5,7 +5,6 @@ import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserService;
 import com.example.demo.util.encoder.Md5Encoder;
 import com.example.demo.util.exception.DataNotFoundException;
-import com.example.demo.util.exception.DuplicateDataException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,10 +40,17 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(user);
     }
 
-    public User register(@Valid User user) throws DuplicateDataException {
+    public User register(@Valid User user) throws DataNotFoundException {
         User duplicate = userRepository.getByEmail(user.getMEmail());
-        DuplicateDataException.check(duplicate != null, DUPLICATE_USER_MESSAGE);
+        DataNotFoundException.check(duplicate != null, DUPLICATE_USER_MESSAGE);
         return userRepository.save(user);
+    }
+
+    public User login(String username, String password) throws DataNotFoundException {
+        User user = userRepository.getByUsername(username);
+        DataNotFoundException.check(user == null || !Md5Encoder.matches(password, user.getMPassword()), INVALID_CREDENTIALS_MESSAGE);
+        return user;
+
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+
 import com.example.demo.dto.JwtResponse;
 import com.example.demo.dto.UserDto;
 import com.example.demo.model.User;
@@ -96,7 +97,6 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(userDto);
         }
         return ResponseEntity.ok(jwtResponse);
-
 
     }
 

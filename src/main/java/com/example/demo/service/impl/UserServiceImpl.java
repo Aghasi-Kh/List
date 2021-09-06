@@ -46,11 +46,10 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(user);
     }
 
-    public User login(String username, String password) throws DataNotFoundException {
-        User user = userRepository.getByUsername(username);
+    public User login(String userEmail, String password) throws DataNotFoundException {
+        User user = userRepository.getByEmail(userEmail);
         DataNotFoundException.check(user == null || !Md5Encoder.matches(password, user.getMPassword()), INVALID_CREDENTIALS_MESSAGE);
         return user;
-
     }
 
     @Override
@@ -66,6 +65,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUserById(Long id) {
         userRepository.deleteUserById(id);
+
     }
 
 

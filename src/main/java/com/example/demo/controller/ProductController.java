@@ -16,8 +16,12 @@ import static com.example.demo.util.constants.Message.NOT_FOUND_MESSAGE;
 @RestController
 @RequestMapping("/")
 public class ProductController {
+    private final ProductServiceImpl productServiceImpl;
+
     @Autowired
-    ProductServiceImpl productServiceImpl;
+    public ProductController(ProductServiceImpl productServiceImpl) {
+        this.productServiceImpl = productServiceImpl;
+    }
 
     @GetMapping("productsRange")
     List<Product> products(@RequestParam(name = "lowerPrice") int lowerPrice, @RequestParam(name = "upperPrice") int upperPrice) {

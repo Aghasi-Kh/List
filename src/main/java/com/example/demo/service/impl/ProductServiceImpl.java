@@ -12,8 +12,11 @@ import java.util.Optional;
 @Service
 public class ProductServiceImpl implements ProductService {
 
-    @Autowired
-    ProductRepository productRepository;
+    private final ProductRepository productRepository;
+
+    public ProductServiceImpl(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
 
     @Override
     public List<Product> productsWithThisRange(int lowerPrice, int upperPrice) {

@@ -14,11 +14,14 @@ import java.util.List;
 @Service
 public class CategoryServiceImpl implements CategoryService {
 
-    @Autowired
-    CategoryRepository categoryRepository;
+    private final CategoryRepository categoryRepository;
 
     @PersistenceContext
     private EntityManager entitymanager;
+
+    public CategoryServiceImpl(CategoryRepository categoryRepository) {
+        this.categoryRepository = categoryRepository;
+    }
 
     @Transactional
     @Override

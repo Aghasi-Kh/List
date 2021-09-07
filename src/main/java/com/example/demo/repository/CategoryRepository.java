@@ -22,6 +22,4 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
 
     @Query(value = "INSERT into category (name, filter, parent_id) VALUES (:obj.mName,:obj.mFilter,:obj.mParent_id)", nativeQuery = true)
     int saveCategory(@Param("obj") Category category);
-
-
 }

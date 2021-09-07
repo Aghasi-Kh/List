@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import com.example.demo.dto.CategoryFilter;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,7 +22,7 @@ public class Category {
     private String mName;
 
     @Column(name = "filter", nullable = false)
-    private String mFilter;
+    private CategoryFilter mFilter;
 
     @Column(name = "parent_id", nullable = false)
     private long mParent_Id;

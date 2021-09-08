@@ -13,6 +13,8 @@ public interface Message {
 
     String DUPLICATE_USER_MESSAGE = "There is user with such username";
 
+    String DUPLICATE_PRODUCT_MESSAGE = "There is product with such username";
+
     String INVALID_CREDENTIALS_MESSAGE = "Wrong username or password";
 
     String UNVERIFIED_MESSAGE = "Your account is not verified,please verify !";

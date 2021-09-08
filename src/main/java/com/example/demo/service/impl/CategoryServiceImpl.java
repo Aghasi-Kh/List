@@ -1,5 +1,6 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.dto.CategoryFilter;
 import com.example.demo.model.Category;
 import com.example.demo.repository.CategoryRepository;
 import com.example.demo.service.CategoryService;
@@ -26,12 +27,13 @@ public class CategoryServiceImpl implements CategoryService {
     @Transactional
     @Override
     public void save(Category category) {
-        entitymanager.createNativeQuery("INSERT into category (name, filter, parent_id) VALUES (?,?,?)")
+        entitymanager.createNativeQuery("INSERT into category (name, parent_id,filter ::jsonb) VALUES (?,?,?)")
                 .setParameter(1, category.getMName())
                 .setParameter(2, category.getMFilter())
                 .setParameter(3, category.getMParent_Id())
                 .executeUpdate();
     }
+
 
     @Override
     public Category getById(Long id) {
@@ -39,6 +41,13 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
 
+    @Override
+    public int saveCategory(String name, CategoryFilter filter){
+        if ( categoryRepository.saveCategory(name,filter)){
+            return 1;
+        }
+        return 0;
+    }
     @Override
     public List<Category> getAll() {
         return categoryRepository.findAll();

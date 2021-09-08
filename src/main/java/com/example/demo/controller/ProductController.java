@@ -3,7 +3,9 @@ package com.example.demo.controller;
 import com.example.demo.model.Product;
 import com.example.demo.service.impl.ProductServiceImpl;
 import com.example.demo.util.exception.DataNotFoundException;
+import com.example.demo.util.exception.DuplicateDataException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +13,7 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
-import static com.example.demo.util.constants.Message.NOT_FOUND_MESSAGE;
+import static com.example.demo.util.constants.Message.*;
 
 @RestController
 @RequestMapping("/")
@@ -24,8 +26,8 @@ public class ProductController {
     }
 
     @GetMapping("productsRange")
-    List<Product> products(@RequestParam(name = "lowerPrice") int lowerPrice, @RequestParam(name = "upperPrice") int upperPrice) {
-        return productServiceImpl.productsWithThisRange(lowerPrice, upperPrice);
+    public ResponseEntity products(@RequestParam(name = "lowerPrice") int lowerPrice, @RequestParam(name = "upperPrice") int upperPrice) {
+        return ResponseEntity.ok().body(productServiceImpl.productsWithThisRange(lowerPrice, upperPrice));
     }
 
     @GetMapping("products")
@@ -44,18 +46,18 @@ public class ProductController {
 
     @Transactional
     @PostMapping("products")
-    public Product addProduct(@Valid @RequestBody Product product) throws DataNotFoundException {
+    public ResponseEntity addProduct(@Valid @RequestBody Product product) throws DuplicateDataException {
         Optional<Product> product1 = productServiceImpl.findById(product.getMId());
         if (product1.isPresent()) {
-            throw new DataNotFoundException(NOT_FOUND_MESSAGE);
+            throw new DuplicateDataException(DUPLICATE_PRODUCT_MESSAGE);
         }
-        return productServiceImpl.save(product);
+        return ResponseEntity.ok().body(productServiceImpl.save(product));
     }
 
     @Transactional
     @DeleteMapping("users/{id}")
-    public void deleteProduct(@PathVariable Long id) {
-        productServiceImpl.deleteProductById(id);
+    public ResponseEntity deleteProduct(@PathVariable Long id) {
+        return ResponseEntity.ok().body(productServiceImpl.deleteProductById(id));
     }
 
 }

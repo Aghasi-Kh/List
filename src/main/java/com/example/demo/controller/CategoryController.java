@@ -30,7 +30,7 @@ public class CategoryController {
 
     @PostMapping("/category")
     public ResponseEntity create(@RequestBody Category category) {
-        categoryService.save(category);
+        categoryService.saveCategory(category.getMName(),category.getMFilter());
         return ResponseEntity.ok(category);
     }
 

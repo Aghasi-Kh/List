@@ -1,5 +1,6 @@
 package com.example.demo.repository;
 
+import com.example.demo.dto.CategoryFilter;
 import com.example.demo.model.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -20,6 +21,6 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
     @Query("Delete from Category where id = ?1")
     void deleteCategoryById(Long id);
 
-    @Query(value = "INSERT into category (name, filter, parent_id) VALUES (:obj.mName,:obj.mFilter,:obj.mParent_id)", nativeQuery = true)
-    int saveCategory(@Param("obj") Category category);
+    @Query(value = "INSERT INTO category (name, filter)VALUES ( :name, :filter); ", nativeQuery = true)
+    boolean saveCategory(@Param("name")String name, @Param("filter")CategoryFilter filter);
 }
